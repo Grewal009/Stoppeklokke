@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stoppeklokke</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <div id="time">0</div>
+      <div class="controls">
+        <button onclick="startClock()">start</button>
+        <button onclick="runde()">runde</button>
+        <button onclick="stopClock()">stop/fjern</button>
+      </div>
+
+      <div class="record">
+        <ul>
+          <li id="runde" class="heading">runde-tider</li>
+        </ul>
+      </div>
+    </main>
+
+    <script>
+      let timer = 0;
+      let timerOn;
+      const clock = document.getElementById("time");
+
+      function startClock() {
+        if (!timerOn) {
+          timerOn = setInterval(function () {
+            timer++;
+            clock.innerHTML = timer;
+          }, 1000);
+          console.log(timerOn);
+        }
+      }
+      function runde() {
+        console.log("runde ", timer);
+        document.getElementById("runde").innerHTML += `<li>${timer}</li>`;
+      }
+      function stopClock() {
+        clearInterval(timerOn);
+        clock.innerHTML = 0;
+        timer = 0;
+        timerOn = false;
+        document.getElementById(
+          "runde"
+        ).innerHTML = `<li id="runde" class="heading">runde-tider</li>`;
+      }
+    </script>
+  </body>
+</html>
